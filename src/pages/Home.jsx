@@ -1,14 +1,12 @@
-import React from 'react';
-import  ProductList from './producList';
+import React from "react";
+import HomeContent from "../components/HomeContent";
 
 const Home = () => {
-  return (
-    <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center">
+    return (
+        <section>
+            <HomeContent />
+        </section>
+    )
+}
 
-      <ProductList />
-    </section>
-
-  );
-};
-
-export default Home;
+export default Home

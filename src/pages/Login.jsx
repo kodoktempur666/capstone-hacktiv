@@ -19,7 +19,9 @@ const Login = () => {
 
       if (user) {
         const token = `token`;
+        const name = `${user.name.firstname} ${user.name.lastname}`;
 
+        localStorage.setItem('name', name);
         localStorage.setItem('token', token);
         toast.success(`Welcome, ${user.name.firstname}!`);
         navigate('/');

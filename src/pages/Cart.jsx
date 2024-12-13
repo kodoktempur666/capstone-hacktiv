@@ -1,14 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem, reduceQuantity, addMoreQuantity } from "../redux/cartSlice";
+import { removeItem, reduceQuantity, addMoreQuantity, deleteAll } from "../redux/cartSlice";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.items);
   const total = useSelector((state) => state.cart.total);
+  const [localCart, setLocalCart] = useState({});
 
-
-
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem('cart'));
+    if (savedCart) {
+      setLocalCart(savedCart);
+    }
+  }, []);
 
   const handleRemoveItem = (id) => {
     console.log("Menghapus item dengan ID:", id);
@@ -23,6 +29,22 @@ const Cart = () => {
   const handleIncreaseQuantity = (id) => {
     console.log("Menambahkan item dengan ID:", id);
     dispatch(addMoreQuantity(id));
+  };
+
+  const handleCheckout = () => {
+    const updatedCart = { ...localCart };
+    cart.forEach(item => {
+      if (updatedCart[item.id]) {
+        updatedCart[item.id].quantity -= item.quantity; 
+      }
+    });
+    
+
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    dispatch(deleteAll());
+    dispatch({ type: 'cart/clearCart' });
+    toast.success('Checkout successful!');
   };
 
   return (
@@ -88,7 +110,12 @@ const Cart = () => {
             <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
               Total Price: ${total.toFixed(2)}
             </h3>
-
+            <button
+              className="btn btn-success mt-4"
+              onClick={handleCheckout}
+            >
+              Checkout
+            </button>
           </div>
         </>
       )}
