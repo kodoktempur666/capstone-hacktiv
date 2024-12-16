@@ -29,7 +29,7 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("name"); 
-    localStorage.removeItem("cart"); 
+
     dispatch(deleteAll());
     setIsLoggedIn(false);
     setName(""); 
