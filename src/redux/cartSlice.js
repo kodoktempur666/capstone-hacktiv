@@ -1,4 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+
+
+
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -35,12 +39,16 @@ const cartSlice = createSlice({
     },
     
     addMoreQuantity(state, action) {
-      const item = state.items.find((item) => item.id === action.payload);
+      const cartData = JSON.parse(localStorage.getItem('cart')) || {}; 
+      const itemFromStorage = cartData[action.payload]; 
+      const maxQuantity = itemFromStorage?.quantity || 0; 
+    
+      const item = state.items.find((item) => item.id === action.payload); 
       if (item) {
-        if (item.quantity >= 1) {
+        if (item.quantity < maxQuantity) {
           item.quantity += 1;
         } else {
-          state.items = state.items.filter((i) => i.id !== action.payload);
+          toast.warn("Cannot add more, maximum quantity reached.");
         }
       }
       state.total = state.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
