@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="footer bg-primary-content shadow-md dark:bg-base-900 text-neutral-content p-10 space-y-12 md:grid-cols-1">
       <aside>
-        <img src="/src/assets/logo.svg" alt="" />
+        <img src="/src/assets/download.webp" alt="" />
         <p>
           Overplus Industries Ltd.
           <br />
