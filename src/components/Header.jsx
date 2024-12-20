@@ -39,7 +39,13 @@ const Header = () => {
   return (
     <div className="navbar bg-primary-content shadow-md dark:bg-base-900 sticky top-0 z-50">
       <div className="flex-1 gap-5">
-        <img src="![logo](https://github.com/user-attachments/assets/6221027a-22f5-48cf-8200-a9684827f3ec)" alt="" />
+                <svg
+                xmlns="/src/assets/logo.svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
         <Link to="/" className="text-2xl font-bold text-white font-audiowide">
           <strong>Overplus</strong>
         </Link>
