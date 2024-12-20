@@ -39,7 +39,7 @@ const Header = () => {
   return (
     <div className="navbar bg-primary-content shadow-md dark:bg-base-900 sticky top-0 z-50">
       <div className="flex-1 gap-5">
-        <img src="/src/assets/home.jpg" alt="" />
+        <img src="![logo](https://github.com/user-attachments/assets/6221027a-22f5-48cf-8200-a9684827f3ec)" alt="" />
         <Link to="/" className="text-2xl font-bold text-white font-audiowide">
           <strong>Overplus</strong>
         </Link>
